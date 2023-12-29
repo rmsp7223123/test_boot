@@ -1,0 +1,22 @@
+@RequiredArgsConstructor
+- Lombok으로 스프링에서 DI(의존성 주입)의 방법 중에 생성자 주입을 임의의 코드없이 자동으로 설정해주는 어노테이션
+- 초기화 되지 않은 final 필드나 @NonNull 어노테이션이 붙은 필드에 대해 생성자를 만들어 줌
+- @Autowired를 사용하지 않고 의존성 주입
+
+@Data
+- @toString + @getter + @setter + @RequiredArgsConstructor + @EqualsAndHashCode
+
+@toString
+- toString() 메서드를 생성한다. @ToString(exclude = {"제외값"})으로 제외시키고 싶은 값을 설정할 수 있음
+- 객체가 가지고 있는 정보나 값들을 문자열로 만들어 리턴 하는 것
+
+@EqualAndHashCode
+- equals(), hashCode() 메서드를 생성한다.
+- equals : 2개의 객체가 동일한지 검사하기 위해 사용
+- hashCode : 런타임중 객체의 유일한 integer 값을 반환
+
+@Getter
+- private로 설정된 필드 변수를 외부에서 접근하려고 만든 것
+
+@Setter
+- private로 설정된 필드 변수를 외부에서 수정하려고 만든 것

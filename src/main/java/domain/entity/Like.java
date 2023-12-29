@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 @Getter
-@Table(name = "\"like\"")
+@Table(name = "\"like\"") // MySQL에서 Table 명을 like로 사용할 수 없는데, @Table(name = ""like"")를 통해 like로 설정
 public class Like {
 
 	@Id
