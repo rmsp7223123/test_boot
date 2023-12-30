@@ -17,14 +17,17 @@ import repository.UserRepository;
 
 @AllArgsConstructor
 public class MyAccessDeniedHandler implements AccessDeniedHandler {
+	
+	// 사용자의 권한 부족으로 인해 접근이 거부될 때 호출되어 특정 조건에 따라 사용자에게 메시지를 보여주고 화면을 리다이렉트
 
 	private final UserRepository userRepository;
 
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response,
 			AccessDeniedException accessDeniedException) throws IOException {
+		// 접근이 거부된 경우 이 메서드가 호출
 
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication(); // 현재 사용자의 인증 정보를 가져옴
 		User loginUser = null;
 		if (auth != null) {
 			loginUser = userRepository.findByLoginId(auth.getName()).get();

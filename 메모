@@ -45,6 +45,24 @@
 - @Component를 갖는 어노테이션으로 @Controller, @Service, @Repository 등이 있으며 앞서 살펴봤던 @Configuration 역시 안에 @Component를 가지고 있음
 
 
+@Service
+- 스프링에서 서비스를 지정하는 어노테이션
+- 해당 클래스를 루트 컨테이너에 Bean 객체로 생성
+- 캡슐화 없이 모델 내 단독 인터페이스로써 제공되는 동작을 의미
+- Business Layer에서 사용할 Service임을 명시
+
+
+@Controller
+- 스프링에서 컨트롤러를 지정하는 어노테이션
+- Model객체를 만들어 데이터를 담고, View를 반환
+- @RequestMapping 어노테이션이 달린 메소드를 감지
+
+
+@Repository
+- 해당 클래스가 데이터 액세스를 담당하는 리포지토리(Repository) 클래스임을 나타냄
+- 데이터를 영구적으로 저장하거나 검색하기 위한 메서드들을 포함하며, 주로 데이터베이스와의 상호작용을 담당하는 클래스
+- Spring 컨테이너에 빈(Bean)으로 등록, 해당 클래스를 자동으로 스캔하여 빈으로 관리
+
 
 antMatchers()
 - URL 패턴을 지정하여 해당 패턴에 대한 접근 권한을 설정하는 데 사용

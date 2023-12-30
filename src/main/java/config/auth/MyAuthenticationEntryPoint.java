@@ -11,6 +11,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 public class MyAuthenticationEntryPoint implements AuthenticationEntryPoint {
+	
+	// 인증되지 않은 사용자가 보호된 리소스에 액세스하려고 할 때 호출
 
 	@Override
 	public void commence(HttpServletRequest request, HttpServletResponse response,
