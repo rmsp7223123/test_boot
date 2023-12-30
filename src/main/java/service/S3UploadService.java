@@ -25,6 +25,8 @@ import repository.UploadImageRepository;
 @Service
 @RequiredArgsConstructor
 public class S3UploadService {
+	
+	//  Amazon S3(Simple Storage Service)를 사용하여 파일 업로드, 다운로드 및 삭제
 
 	private final AmazonS3 amazonS3;
 	private final UploadImageRepository uploadImageRepository;
@@ -34,7 +36,9 @@ public class S3UploadService {
 	private String bucket;
 
 	public UploadImage saveImage(MultipartFile multipartFile, Board board) throws IOException {
-
+		
+		// 파일 업로드
+		
 		if (multipartFile.isEmpty()) {
 			return null;
 		}
@@ -52,6 +56,7 @@ public class S3UploadService {
 		// S3에 파일 업로드
 		amazonS3.putObject(bucket, savedFilename, multipartFile.getInputStream(), metadata);
 
+		// 업로드된 파일의 메타데이터와 저장된 파일명을 데이터베이스에 저장하고, 그 정보를 UploadImage 엔티티로 반환
 		return uploadImageRepository
 				.save(UploadImage.builder().originalFilename(originalFilename).savedFilename(savedFilename).build());
 	}
@@ -63,6 +68,9 @@ public class S3UploadService {
 	}
 
 	public ResponseEntity<UrlResource> downloadImage(Long boardId) {
+		
+		// boardId를 받아 해당하는 게시글의 이미지를 S3에서 다운로드할 수 있는 URL로 만들어주고, 이를 ResponseEntity 형태로 반환
+		
 		// boardId에 해당하는 게시글이 없으면 null return
 		Board board = boardRepository.findById(boardId).get();
 		if (board == null || board.getUploadImage() == null) {
@@ -77,6 +85,10 @@ public class S3UploadService {
 		String contentDisposition = "attachment; filename=\"" + encodedUploadFileName + "\"";
 
 		// header에 CONTENT_DISPOSITION 설정을 통해 클릭 시 다운로드 진행
+		// ResponseEntity를 사용하여 클라이언트에게 반환될 HTTP 응답을 생성
+		// HttpHeaders.CONTENT_DISPOSITION 헤더를 사용하여 다운로드를 유도하는 설정을 추가
+		// ok() 메서드로 응답 코드를 200 OK로 설정하고, header() 메서드로 다운로드를 유도하는 헤더를 추가
+		// body() 메서드로 이미지의 URL을 ResponseEntity의 본문(body)에 설정하여 클라이언트에게 반환
 		return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION, contentDisposition).body(urlResource);
 
 	}
