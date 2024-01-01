@@ -37,6 +37,10 @@ implementation group: 'org.springframework.boot', name: 'spring-boot-starter-sec
 //amazon s3
 implementation 'org.springframework.cloud:spring-cloud-starter-aws:2.2.6.RELEASE'
 
+// ojdbc8
+implementation group: 'com.oracle.database.jdbc', name: 'ojdbc8', version: '21.5.0.0'
+
+
 }
 
 tasks.named('test') {
