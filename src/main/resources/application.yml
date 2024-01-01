@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: jdbc:oracle:thin:@localhost:1521:boot
+    url: jdbc:oracle:thin:@localhost:1521:xe
     username: system
     password: 0000
-    driver-class-name: oracle.jdbc.OracleDriver
+    driver-class-name: oracle.jdbc.driver.OracleDriver
 
   jpa:
     show-sql: true
