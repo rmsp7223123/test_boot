@@ -1,5 +1,8 @@
 spring:
   datasource:
+    url: 
+    username: 
+    password: 
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -16,7 +19,7 @@ spring:
 
 # 한글 깨짐 현상 방지 및 포트 변경
 server:
-  port: 8084
+  port: 80
   servlet:
     encoding:
       force-response: true
