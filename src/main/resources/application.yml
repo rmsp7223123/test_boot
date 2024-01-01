@@ -3,12 +3,12 @@ spring:
     url: 
     username: 
     password: 
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: oracle.jdbc.OracleDriver
 
   jpa:
     show-sql: true
-    database-platform: org.hibernate.dialect.MySQL8Dialect
-    database: mysql
+    database-platform: org.hibernate.dialect.Oracle12cDialect
+    database: ORACLE
     hibernate:
       ddl-auto: update
 
